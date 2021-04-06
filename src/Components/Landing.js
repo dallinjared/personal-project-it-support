@@ -10,8 +10,8 @@ const Landing = () => {
                 <input type='text' placeholder='username' />
                 <input type='password' placeholder='password' />
                 <button>Login</button>
-                <Link to='/auth/register'>Register</Link>
             </form>
+                <Link to='/auth/register'>Register</Link>
         </div>
     )
 };
