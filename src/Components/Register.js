@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
-// import {withRouter} from 'react-router-dom';
+import {updateUser} from '../redux/reducers/userReducer';
+import {useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
 import axios from 'axios';
 
-const Register = () => {
+const Register = (props) => {
+    const history = useHistory();
     const [data, setData] = useState({
         username: '',
         password: '',
@@ -13,18 +16,22 @@ const Register = () => {
         phone_number: '',
         is_admin: false
     })
+    
+    const {username, email} = props;
 
-    const register = () => {
+    function register(e){
+        e.preventDefault();
         const data1 = {username: data.username, password: data.password, first_name: data.first_name, last_name: data.last_name, birthday: data.birthday, email: data.email, phone_number: data.phone_number, is_admin: data.is_admin}
 
         axios.post('/auth/register', data1)
             .then (res => {
                 console.log(res.data)
+                history.push('/user/dash')
             })
             .catch(err => console.log(err))
     }
 
-    const onChange = (e) => {
+    function onChange(e){
         setData({...data, [e.target.name]: e.target.value})
     }
 
@@ -40,9 +47,15 @@ const Register = () => {
                 <input type='text' placeholder='Username' name='username' onChange={onChange} value={data.username} />
                 <input type='password' placeholder='Password' name='password' onChange={onChange} value={data.password} />
             </form>
-            <button type='submit' onClick={register}>Submit</button>
+            <button type='submit' onClick={(e) => register(e)}>Submit</button>
         </div>
     )
 };
 
-export default Register;  
+function mapStateToProps(stateRedux){
+    return stateRedux
+    
+}
+export default connect(mapStateToProps, {updateUser})(Register);  
+
+// export default Register;  

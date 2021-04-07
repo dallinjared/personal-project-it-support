@@ -18,6 +18,8 @@ app.use(session({
 
 // USER LOGIN/REGISTRATION ENDPOINTS
 app.post('/auth/register', authCtrl.register)
+app.post('/auth/login', authCtrl.login)
+app.get('/user/dash', authCtrl.getUser)
 
 
 // TICKET ENDPOINTS

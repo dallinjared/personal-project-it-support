@@ -1,19 +1,12 @@
-import React, {useState} from 'react';
-import {Link, withRouter} from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
 
 const Landing = () => {
 
     return (
         <div>
-            <form>
-                <input type='text' placeholder='username' />
-                <input type='password' placeholder='password' />
-                <button>Login</button>
-            </form>
-                <Link to='/auth/register'>Register</Link>
+            <h1>Welcome! please register or Login</h1>
         </div>
     )
 };
 
-export default withRouter(Landing);
+export default Landing;

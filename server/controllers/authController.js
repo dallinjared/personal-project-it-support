@@ -25,4 +25,30 @@ module.exports = {
             return res.sendStatus(500)
         }
     },
+
+    login: async (req, res) => {
+        const db = req.app.get('db');
+        const {username, password} = req.body;
+
+        const [existingUser] = await db.user.find_user_by_username([username])
+        if (!existingUser){
+            return res.status(401).send('User does not exist')
+        }
+        const isAuthenticated = bcrypt.compareSync(password, existingUser.password)
+        if (!isAuthenticated){
+            return res.status(401).send('Incorrect password')
+        }
+
+        req.session.user =  existingUser
+        delete existingUser.password
+        res.status(200).send(existingUser)
+    },
+
+    getUser: async (req, res) => {
+        if (req.session.user) {
+            console.log(req.session.user)
+            res.status(200).send(req.session.user)
+        }
+        res.status(400).send('ERROR 404: No session found')
+    },
 };
