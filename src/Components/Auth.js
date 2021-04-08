@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {updateUser} from '../redux/reducers/userReducer';
 import axios from 'axios';
+import '../stylesheets/Auth.css';
 
 class Auth extends Component {
     constructor(props) {
@@ -43,13 +44,20 @@ class Auth extends Component {
 
     render(){
         return (
-            <div>
-                <p>Username:</p>
-                <input value={this.state.username} onChange={e => this.handleChange('username', e.target.value)} />
-                <p>Password:</p>
-                <input value={this.state.password} onChange={e => this.handleChange('password', e.target.value)} />
-                <button onClick={(e) => this.login(e)}>login</button>
-                <Link to='/auth/register'>Register</Link>
+            <div className='loginWrapper' >
+                <form>
+                    <h1>Welcome!</h1>
+                    <div>
+                        <label>Username</label>
+                        <input value={this.state.username} onChange={e => this.handleChange('username', e.target.value)} />
+                        <label>Password</label>
+                        <input value={this.state.password} onChange={e => this.handleChange('password', e.target.value)} />
+                    </div>
+                    <div>
+                    <button onClick={(e) => this.login(e)}>Login</button>
+                    <Link className='register' to='/auth/register'>Register</Link>
+                    </div>
+                </form>
             </div>
         )
     }

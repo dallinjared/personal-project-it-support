@@ -17,7 +17,6 @@ const Register = (props) => {
         is_admin: false
     })
     
-    const {username, email} = props;
 
     function register(e){
         e.preventDefault();
