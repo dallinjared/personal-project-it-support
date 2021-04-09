@@ -4,12 +4,13 @@ const session = require('express-session');
 const massive = require('massive');
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 const authCtrl = require('./controllers/authController');
+const ticketCtrl = require('./controllers/ticketController');
 const app = express();
 
 app.use(express.json());
 app.use(session({
-    resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    resave: false,
     secret: SESSION_SECRET,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 7 * 4
@@ -20,9 +21,11 @@ app.use(session({
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 app.get('/user/dash', authCtrl.getUser)
+app.get('/auth/logout', authCtrl.logout)
 
 
 // TICKET ENDPOINTS
+app.post('/api/ticket/new', ticketCtrl.newTicket)
 
 massive({
     connectionString:  CONNECTION_STRING,

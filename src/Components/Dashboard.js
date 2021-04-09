@@ -1,9 +1,25 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
+import '../stylesheets/dash.css';
 
 const Dashboard = () => {
 
+    const logout = () => {
+        axios.get('/auth/logout')
+            .then(res => this.props.logout())
+    };
+
     return (
-        <h1>WELCOME!</h1>
+        <div className='mainContain' > 
+            <div className='dashContain' >
+                <div className='header' >                    
+                    <h1>WELCOME!</h1>
+                    <Link to='/' onClick={() => logout} className='logout' >Logout</Link>
+                </div>
+            </div>           
+                <Link to='/api/ticket/new'>New Ticket</Link>
+        </div>
     )
 
 }; 

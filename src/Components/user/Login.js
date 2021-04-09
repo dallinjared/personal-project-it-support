@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {withRouter} from 'react-router-dom';
-import updateUser from '../redux/reducers/userReducer';
+import updateUser from '../../redux/reducers/userReducer';
 import axios from 'axios';
 import { connect} from 'react-redux';
 // import { login } from '../../server/controllers/authController';
 
-const Login = () => {
+const Login = (props) => {
     const [data, setData] = useState({
         username: '',
         password: '',
@@ -19,9 +19,9 @@ const Login = () => {
         const data1 = {username: data.username, password: data.password}
         axios.post('/auth/login', data1)
             .then (res => {
+                props.updateUser(res.data)
                 console.log(res.data)
-                this.props.history.push('/user/dash')
-                this.props.updateUser({username: res.data.username})
+                props.history.push('/user/dash')
 
             })
             .catch(err => console.log(err))

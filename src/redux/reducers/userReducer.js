@@ -1,16 +1,10 @@
 const initialState = {
-    username: '',
-    password: '',
-    first_name: '',
-    last_name: '',
-    birthday: null,
-    email: '',
-    phone_number: '',
-    is_admin: false
+    user: {}
 };
 
 const REGISTER_USER = 'REGISTER_USER';
 const UPDATE_USER = 'UPDATE_USER';
+const LOGOUT_USER = 'LOGOUT_USER';
 
 export function updateUser(user){
     return {
@@ -26,7 +20,11 @@ export function registerUser(user){
     }
 };
 
-
+export function logoutUser(){
+    return {
+        type: LOGOUT_USER,
+    }
+}
 
 
 
@@ -40,8 +38,13 @@ export default function reducer(state = initialState, action) {
         case UPDATE_USER:
             return {
                 ...state,
-                ...action.payload
+                user: action.payload
             }
+        case LOGOUT_USER:
+                return {
+                    state,
+                }
+
         default: return state;
     }
 };

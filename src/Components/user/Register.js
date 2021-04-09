@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {updateUser} from '../redux/reducers/userReducer';
+import {updateUser} from '../../redux/reducers/userReducer';
 import {useHistory} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import '../../stylesheets/register.css';
 
 const Register = (props) => {
     const history = useHistory();
@@ -36,8 +37,9 @@ const Register = (props) => {
 
 
     return (
-        <div>
-            <form>
+        <div className='registerUser' >
+            <button className='back' onClick={() => history.push('/')} >&#8678;</button>
+            <form className='form' >
                 <input type='text' placeholder='First name' name='first_name' onChange={onChange} value={data.first_name}/>
                 <input type='text' placeholder='Last name' name='last_name' onChange={onChange} value={data.last_name} />
                 <input type='date' placeholder='Birthday' name='birthday' onChange={e => setData({...data, [e.target.name]: e.target.value})}value={data.birthday} />
@@ -45,8 +47,8 @@ const Register = (props) => {
                 <input type='tel' placeholder='Telephone number'  name='phone_number' onChange={onChange} value={data.phone_number} />
                 <input type='text' placeholder='Username' name='username' onChange={onChange} value={data.username} />
                 <input type='password' placeholder='Password' name='password' onChange={onChange} value={data.password} />
+                <button type='submit' onClick={(e) => register(e)}>Submit</button>
             </form>
-            <button type='submit' onClick={(e) => register(e)}>Submit</button>
         </div>
     )
 };

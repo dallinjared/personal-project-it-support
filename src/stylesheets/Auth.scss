@@ -5,9 +5,16 @@
     align-items: center;
 }
 
+@mixin flexRow(){
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
 $blue: #3498db;
 $green: #2ecc71;
-
 
 .loginWrapper {
     width: 50vw;

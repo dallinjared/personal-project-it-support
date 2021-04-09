@@ -9,7 +9,7 @@
 .App {
   width: 100vw;
   height: 100vh;
-  background-image: url(../images/ornament.jpg);
+  background-image: url("../images/ornament.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   display: -webkit-box;

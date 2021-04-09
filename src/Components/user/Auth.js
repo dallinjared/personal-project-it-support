@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {updateUser} from '../redux/reducers/userReducer';
+import {updateUser} from '../../redux/reducers/userReducer';
 import axios from 'axios';
-import '../stylesheets/Auth.css';
+import '../../stylesheets/Auth.css';
 
 class Auth extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class Auth extends Component {
         axios.post('/auth/login', this.state)
             .then(res => {
                 this.props.history.push('/user/dash')
-                this.props.updateUser({username: res.data.username})
+                this.props.updateUser({username: res.data.username, id: res.data.user_id})
             })
             .catch(err => {
                 console.log(err)
@@ -51,7 +51,7 @@ class Auth extends Component {
                         <label>Username</label>
                         <input value={this.state.username} onChange={e => this.handleChange('username', e.target.value)} />
                         <label>Password</label>
-                        <input value={this.state.password} onChange={e => this.handleChange('password', e.target.value)} />
+                        <input type='password' value={this.state.password} onChange={e => this.handleChange('password', e.target.value)} />
                     </div>
                     <div>
                     <button onClick={(e) => this.login(e)}>Login</button>
