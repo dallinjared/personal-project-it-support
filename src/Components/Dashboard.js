@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import UserTickets from './ticket/UserTickets'
 import '../stylesheets/dash.css';
 
 const Dashboard = () => {
@@ -17,7 +18,8 @@ const Dashboard = () => {
                     <h1>WELCOME!</h1>
                     <Link to='/' onClick={() => logout} className='logout' >Logout</Link>
                 </div>
-            </div>           
+            </div>  
+                <UserTickets />         
                 <Link to='/api/ticket/new'>New Ticket</Link>
         </div>
     )

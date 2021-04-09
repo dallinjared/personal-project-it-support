@@ -25,7 +25,9 @@ app.get('/auth/logout', authCtrl.logout)
 
 
 // TICKET ENDPOINTS
-app.post('/api/ticket/new', ticketCtrl.newTicket)
+app.post('/user/api/ticket/new', ticketCtrl.newTicket)
+app.post('/user/dash', ticketCtrl.getUserTickets)
+app.get('/user/api/ticket/:id', ticketCtrl.readTicket)
 
 massive({
     connectionString:  CONNECTION_STRING,
