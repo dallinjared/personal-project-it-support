@@ -18,7 +18,7 @@ const NewTicket = (props) => {
         console.log(props)
         const {id} = props;
         const data1 = {id: id, date: data.date, title: data.title, category: data.category, description: data.description, media: data.media};
-        axios.post('/api/ticket/new', data1)
+        axios.post('/user/api/ticket/new', data1)
             .then(res => {
                 console.log(res.data)
                 alert('Post successfully submitted')
@@ -35,8 +35,8 @@ const NewTicket = (props) => {
         <div>
             <form>
                 <input type='text' placeholder='Title' onChange={onChange} name='title' value ={data.title} />
-                <select name='category'>
-                    <option name='general' value='general'>General Question</option>
+                <select name='category' onChange={onChange} selected>
+                    <option name='general' value='general' >General Question</option>
                     <option name='internet' value='internet'>Internet Issue</option>
                     <option name='website' value='website'>Website debugging</option>
                     <option name='suggestion' value='suggestion'>Suggestion</option>

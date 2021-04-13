@@ -2,23 +2,26 @@ import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const UserTickets = (props) => {
+const UserTickets = () => {
     const [tickets, setTickets] = useState([]);
 
     useEffect(() => {
-        axios.get('/user/api/ticket/:id')
+        axios.get('/user/dash')
             .then(res => {
-                setTickets(res.data.results)
+                setTickets(res.data)
+                console.log(res.data)
             })
-    })
+    }, [])
 
     return (
         <div>
+            <h1>TICKETS</h1>
+            {/* <div>{tickets}</div> */}
             {
-                tickets.map(ticket => {
+                tickets.map(t => {
                     return (
-                    <Link to={`/user/api/ticket/${ticket.ticket_id}`} >
-                        <h2>ticket</h2>
+                    <Link to={`/user/api/ticket/${t.ticket_id}`} >
+                        <h2>ticket #{t.ticket_id} </h2>
                     </Link>
                     )
                 })

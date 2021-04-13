@@ -20,13 +20,13 @@ app.use(session({
 // USER LOGIN/REGISTRATION ENDPOINTS
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
-app.get('/user/dash', authCtrl.getUser)
+app.get('/auth/session', authCtrl.getUser) //, ticketCtrl.getUserTickets)
 app.get('/auth/logout', authCtrl.logout)
 
 
 // TICKET ENDPOINTS
 app.post('/user/api/ticket/new', ticketCtrl.newTicket)
-app.post('/user/dash', ticketCtrl.getUserTickets)
+app.get('/user/dash', ticketCtrl.getUserTickets)
 app.get('/user/api/ticket/:id', ticketCtrl.readTicket)
 
 massive({

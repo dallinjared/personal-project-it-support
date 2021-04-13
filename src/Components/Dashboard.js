@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 import UserTickets from './ticket/UserTickets'
 import '../stylesheets/dash.css';
 
 const Dashboard = () => {
+    // const [tickets, setTickets] = useState([]);
+
+    // useEffect(() => {
+    //     axios.post('/user/dash')
+    //         .then(res => {
+    //             setTickets(res.data.results)
+    //         })
+    // }, [])
 
     const logout = () => {
         axios.get('/auth/logout')

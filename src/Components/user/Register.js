@@ -25,7 +25,7 @@ const Register = (props) => {
 
         axios.post('/auth/register', data1)
             .then (res => {
-                console.log(res.data)
+                this.props.updateUser({username: res.data.username, id: res.data.user_id})
                 history.push('/user/dash')
             })
             .catch(err => console.log(err))

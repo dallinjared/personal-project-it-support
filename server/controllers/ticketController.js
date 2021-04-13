@@ -2,6 +2,7 @@ const tickets = [];
 
 module.exports = {
     newTicket: async (req, res) => {
+        console.log(req.body)
         const db = req.app.get('db');
         const {id, title, category, description, media} = req.body;
         const date = new Date();
@@ -15,10 +16,10 @@ module.exports = {
     },
     getUserTickets: async (req, res) => {
         const db = await req.app.get('db');
-        let {id} = req.session.user;
-        if (id) {
-             db.ticket.get_user_tickets(id)
-                .then(res => res.status(200).send(tickets))
+        let {user_id} = req.session.user;
+        if (user_id) {
+             db.ticket.get_user_tickets(user_id)
+                .then(dbRes => res.status(200).send(dbRes))
         } else {
             res.sendStatus(403)
         }
