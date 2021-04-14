@@ -1,12 +1,14 @@
 import { composeWithDevTools } from 'redux-devtools-extension';
 import userReducer from './reducers/userReducer';
-import {createStore} from 'redux';
+import ticketReducer from './reducers/ticketReducer';
+import {combineReducers, createStore} from 'redux';
 
 // function reducer(state) {
 //     return state;
 // };
+const rootReducer = combineReducers({user: userReducer, ticket: ticketReducer})
 
-let store = createStore(userReducer, composeWithDevTools())
+let store = createStore(rootReducer, composeWithDevTools())
 
 
 export default store;

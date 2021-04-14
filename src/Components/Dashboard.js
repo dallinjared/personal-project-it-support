@@ -1,11 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
+// import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import UserTickets from './ticket/UserTickets'
+import UserTickets from './ticket/UserTickets';
+import Tickets from './ticket/Ticket';
 import '../stylesheets/dash.css';
+import NewTicket from './ticket/NewTicket';
 
-const Dashboard = () => {
-    // const [tickets, setTickets] = useState([]);
+const Dashboard = (props) => {
+    const [ticket, setTicket] = useState();
+    const [createTicket, setCreateTicket] = useState(false);
 
     // useEffect(() => {
     //     axios.post('/user/dash')
@@ -19,6 +23,22 @@ const Dashboard = () => {
             .then(res => this.props.logout())
     };
 
+    const readTicket = () => {
+        axios.get(`/user/api/ticket/${props.match.params.id}`)
+        .then(res => {
+            setTicket(res.data);
+            return (
+                <div>
+                {ticket}
+                </div>
+            );
+        })
+    };
+
+    const _onButtonClick = () => {
+        setCreateTicket(true)
+    };
+
     return (
         <div className='mainContain' > 
             <div className='dashContain' >
@@ -26,9 +46,15 @@ const Dashboard = () => {
                     <h1>WELCOME!</h1>
                     <Link to='/' onClick={() => logout} className='logout' >Logout</Link>
                 </div>
-            </div>  
-                <UserTickets />         
-                <Link to='/api/ticket/new'>New Ticket</Link>
+                <div className='userTickets' >
+                    <UserTickets />         
+                </div>
+                {/* <Link className='newTicket' to='/api/ticket/new'>&#9547;</Link> */}
+                <button onClick={_onButtonClick} className='newTicket'>&#9547;</button>
+                    {createTicket ?
+                    <NewTicket /> :
+                    null}
+            </div>   
         </div>
     )
 

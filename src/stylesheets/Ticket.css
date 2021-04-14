@@ -1,0 +1,18 @@
+.ticketData {
+  width: 40vw;
+  height: 5%;
+  padding-bottom: 5vh;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.back {
+  position: absolute;
+  top: 0px;
+  left: 1vw;
+}
+/*# sourceMappingURL=Ticket.css.map */

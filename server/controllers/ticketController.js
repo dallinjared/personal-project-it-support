@@ -1,4 +1,4 @@
-const tickets = [];
+// const tickets = [];
 
 module.exports = {
     newTicket: async (req, res) => {
@@ -24,8 +24,10 @@ module.exports = {
             res.sendStatus(403)
         }
     },
-    readTicket: (req, res) => {
-        req.app.get('db').ticket.read_ticket(req.params.id)
-            .then(ticket => ticket[0] ? res.status(200).send(ticket[0]) : res.status(200).send({}))
+    readTicket: async (req, res) => {
+        await req.app.get('db').ticket.read_ticket(req.params.id)
+        // .then(ticket => ticket[req.params.id])
+        .then(ticket => ticket[0] ? res.status(200).send(ticket[0]) : res.status(200).send({}))
+        .catch(err => console.log(err))
     },
 }

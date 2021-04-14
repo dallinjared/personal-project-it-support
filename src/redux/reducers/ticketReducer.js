@@ -4,6 +4,7 @@ const initialState = {
 
 const CREATE_TICKET = 'CREATE_TICKET';
 const GET_USER_TICKETS = 'GET_USER_TICKETS';
+const READ_TICKET = 'READ_TICKET';
 
 export function createTicket(ticket){
     return {
@@ -19,6 +20,13 @@ export function getUserTickets(ticket){
     }
 }
 
+export function readTicket (ticket){
+    return {
+        type: READ_TICKET,
+        payload: ticket
+    }
+}
+
 export default function reducer(state = initialState, action) {
     switch(action.type){
         case CREATE_TICKET:
@@ -28,6 +36,11 @@ export default function reducer(state = initialState, action) {
             }
         case GET_USER_TICKETS:
             return {
+                ...state,
+                ...action.payload
+            }
+        case READ_TICKET:
+            return{
                 ...state,
                 ...action.payload
             }

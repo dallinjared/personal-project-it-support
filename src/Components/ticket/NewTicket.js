@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {Link, withRouter} from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -12,6 +13,9 @@ const NewTicket = (props) => {
         description: '',
         media: null
     })
+    
+    const [close, setClose] = useState(true)
+    
 
     const submitTicket = (e) => {
         e.preventDefault();
@@ -31,9 +35,18 @@ const NewTicket = (props) => {
         setData({...data, [e.target.name]: e.target.value})
     }
 
+    const _onButtonClick = () => {
+        setClose(false)
+    };
+
     return (
         <div>
-            <form>
+
+        {            
+            close ?
+
+            <form className='createTicket'>
+            <button to='/user/dash'  className='back' onClick={_onButtonClick} >&#8678;</button>
                 <input type='text' placeholder='Title' onChange={onChange} name='title' value ={data.title} />
                 <select name='category' onChange={onChange} selected>
                     <option name='general' value='general' >General Question</option>
@@ -46,7 +59,10 @@ const NewTicket = (props) => {
                 <input type='file' placeholder='upload relevant image' onChange={onChange} name='media' value ={data.media} />
                 <button type='submit' onClick={(e) => submitTicket(e)} >Submit Request</button>
             </form>
-        </div>
+
+            : null 
+}        
+</div>
     )
 };
 
@@ -55,4 +71,4 @@ const mapStateToProps = (state) => {
     return user
 }
 
-export default connect(mapStateToProps)(NewTicket);
+export default withRouter(connect(mapStateToProps)(NewTicket));

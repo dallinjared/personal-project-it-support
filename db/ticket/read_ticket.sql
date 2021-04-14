@@ -1,1 +1,3 @@
-SELECT * FROM user_ticket WHERE ticket_id = $1;
+SELECT * FROM user_ticket 
+WHERE ticket_id = $1;
+-- RETURN *;

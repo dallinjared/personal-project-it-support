@@ -8,7 +8,7 @@ import './stylesheets/App.css';
 
 function App(props) {
 
-  useEffect(() => {
+  useEffect((props) => {
     axios.get('/auth/session')
       .then (res => {
         props.updateUser({username: res.data.username, id: res.data.user_id})
