@@ -21,7 +21,7 @@ const Register = (props) => {
 
     function register(e){
         e.preventDefault();
-        const data1 = {username: data.username, password: data.password, first_name: data.first_name, last_name: data.last_name, birthday: data.birthday, email: data.email, phone_number: data.phone_number, is_admin: data.is_admin}
+        const data1 = {username: data.username, password: data.password, first_name: data.first_name, last_name: data.last_name, birthday: data.birthday, email: data.email, phone_number: data.phone_number, is_admin: false}
 
         axios.post('/auth/register', data1)
             .then (res => {

@@ -1,14 +1,30 @@
+.ticketContain {
+  position: fixed;
+  top: 24.5vh;
+  width: 50vw;
+  height: 30vh;
+  padding: 15px 0px;
+  background-color:rgba(172, 172, 172, 0.3);
+  border: 2px solid rgb(143, 143, 143);
+  border-radius: 2px;
+
+  z-index: 1;
+  overflow:scroll;
+}
+
 .ticketData {
   width: 40vw;
-  height: 5%;
-  padding-bottom: 5vh;
-  text-align: center;
+  height: 3rem;
+  /* padding: 25px; */
   font-family: sans-serif;
   font-size: 2rem;
   color: white;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 10px;
+  background-color:rgba(172, 172, 172, 0.3);
+  border: 2px solid rgb(143, 143, 143);
+  border-radius: 2px;
+  text-align: center;
 }
+
 
 .back {
   position: absolute;

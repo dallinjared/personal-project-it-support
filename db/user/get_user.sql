@@ -1,2 +1,2 @@
-SELECT * FROM user_login
+SELECT * FROM user_info
 WHERE username = $1;

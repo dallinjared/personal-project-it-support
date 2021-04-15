@@ -14,7 +14,7 @@ const Ticket = (props) => {
         category: '',
         description: '',
         media: '',
-        isOpen: null
+        isOpen: true
     })
     // const history = useHistory();
 

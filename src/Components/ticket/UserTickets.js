@@ -40,11 +40,12 @@ const UserTickets = (props) => {
                         return ( 
                             <div>
 
-                                <div>
+                                <div className='ticketList'>
                                 {/* <button onClick={() => onButtonClick(t.ticket_id)} className='ticketItems'  > */}
                                    <h2 onClick={() => onButtonClick(t.ticket_id)} className='ticketItems'>Ticket: {t.title}</h2>
                                {/* </button>  */}
                                 </div>
+
                                 <div className='openTicket'>
                                 {readTicket === t.ticket_id ? <Ticket  ticketId={t.ticket_id} /> : null}
                                 </div>
@@ -56,8 +57,6 @@ const UserTickets = (props) => {
                         )
                     })
                 }
-            {/* { ticketId ? <button onClick={() => Ticket}> {title} </button>  : null
-                } */}
         </div>
     )
 };

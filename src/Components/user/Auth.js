@@ -11,6 +11,7 @@ class Auth extends Component {
         this.state = {
             username: '',
             password: '',
+            isAdmin: null,
             errorMsg: ''
         }
     }
@@ -26,7 +27,8 @@ class Auth extends Component {
         axios.post('/auth/login', this.state)
             .then(res => {
                 this.props.history.push('/user/dash')
-                this.props.updateUser({username: res.data.username, id: res.data.user_id})
+                this.props.updateUser({username: res.data.username, id: res.data.user_id, isAdmin: res.data.is_admin})
+                // {this.props.isAdmin ? this.props.history.push('/admin/dash') : this.props.history.push('/user/dash') }
             })
             .catch(err => {
                 console.log(err)
