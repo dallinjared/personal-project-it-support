@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import {readTicket} from '../../redux/reducers/ticketReducer';
 // import {useHistory} from 'react-router-dom';
 import '../../stylesheets/Ticket.css';
 
@@ -18,7 +19,7 @@ const Ticket = (props) => {
     // const history = useHistory();
 
     useEffect(() => {
-        axios.get(`/user/api/ticket/${props.match.params.id}`)
+        axios.get(`/user/api/ticket/${props.ticketId}`)
             .then(res =>{
                 setTicket(res.data)
                 console.log(res.data)
@@ -28,8 +29,8 @@ const Ticket = (props) => {
 
     return (
         
-        <div className='ticketContain' >
-            <div>
+        <div  >
+            <div className='ticketContain'>
                 <h1 className='ticketData' >{ticket.date}</h1>
                 <h1 className='ticketData' >{ticket.title}</h1>
                 <h1 className='ticketData' >{ticket.category}</h1>
@@ -46,4 +47,4 @@ const mapStateToProps = (state) => {
 }
 
 // export default Ticket;
-export default connect(mapStateToProps)(Ticket);
+export default connect(mapStateToProps, readTicket)(Ticket);

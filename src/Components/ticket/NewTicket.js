@@ -14,7 +14,7 @@ const NewTicket = (props) => {
         media: null
     })
     
-    const [close, setClose] = useState(true)
+    const [view, setView] = useState(true)
     
 
     const submitTicket = (e) => {
@@ -36,14 +36,14 @@ const NewTicket = (props) => {
     }
 
     const _onButtonClick = () => {
-        setClose(false)
+        setView(false)
     };
 
     return (
         <div>
 
         {            
-            close ?
+            view ?
 
             <form className='createTicket'>
             <button to='/user/dash'  className='back' onClick={_onButtonClick} >&#8678;</button>
@@ -60,7 +60,7 @@ const NewTicket = (props) => {
                 <button type='submit' onClick={(e) => submitTicket(e)} >Submit Request</button>
             </form>
 
-            : null 
+            : null
 }        
 </div>
     )
