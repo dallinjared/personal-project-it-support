@@ -4,11 +4,12 @@
   width: 50vw;
   height: 30vh;
   padding: 15px 0px;
-  background-color: rgba(172, 172, 172, 0.3);
-  border: 2px solid #8f8f8f;
+  background-color:rgba(172, 172, 172, 0.3);
+  border: 2px solid rgb(143, 143, 143);
   border-radius: 2px;
+
   z-index: 1;
-  overflow: scroll;
+  overflow:scroll;
 }
 
 .ticketData {
@@ -18,13 +19,14 @@
   font-family: sans-serif;
   font-size: 2rem;
   color: white;
-  background-color: rgba(172, 172, 172, 0.3);
-  border: 2px solid #8f8f8f;
+  background-color:rgba(172, 172, 172, 0.3);
+  border: 2px solid rgb(143, 143, 143);
   border-radius: 2px;
   text-align: center;
 }
 
-.closeTicket {
+
+ .closeTicket {
   position: absolute;
   top: 0px;
   left: 0.5vw;
@@ -40,18 +42,11 @@
   color: white;
   border-radius: 100%;
   text-decoration: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.closeTicket:hover {
-  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+    &:hover {
+    cursor: pointer;
+  };
 }
 /*# sourceMappingURL=Ticket.css.map */

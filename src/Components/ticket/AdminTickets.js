@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {getUserTickets, readTicket} from '../../redux/reducers/ticketReducer';
 import {connect}  from 'react-redux';
 import Ticket from './Ticket';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import  '../../stylesheets/sidebar.css';
 
-const UserTickets = (props) => {
+const AdminTickets = (props) => {
     const [tickets, setTickets] = useState([{
         ticketId: null,
         title: '',
@@ -14,7 +15,7 @@ const UserTickets = (props) => {
     const [readTicket, setReadTicket] = useState(null)
 
     useEffect((props) => {
-        axios.get('/user/dash')
+        axios.get('/admin/dash')
             .then(res => {
                 setTickets(res.data)
                 // console.log(res.data)
@@ -23,7 +24,12 @@ const UserTickets = (props) => {
 
 
     const onButtonClick = (ticketId) => {
+        // setReadTicket(true)
+        // axios.get(`/user/api/ticket/${props.ticketId}`)
+        //     .then(res => setTickets(res.data))
+        // console.log(tickets)
         setReadTicket(ticketId)
+        
     }
     
     return (
@@ -59,4 +65,4 @@ const mapStateToProps = (state) => {
     return state
 }
 
-export default connect(mapStateToProps, {getUserTickets})(UserTickets);
+export default connect(mapStateToProps, {getUserTickets})(AdminTickets);

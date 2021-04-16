@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 // import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import UserTickets from './ticket/UserTickets';
+import AdminTickets from './ticket/AdminTickets';
 import Tickets from './ticket/Ticket';
 import '../stylesheets/dash.css';
 import NewTicket from './ticket/NewTicket';
 
-const Dashboard = (props) => {
+const AdminDash = (props) => {
     const [ticket, setTicket] = useState();
     const [createTicket, setCreateTicket] = useState(false);
 
@@ -43,13 +43,12 @@ const Dashboard = (props) => {
         <div className='mainContain' > 
             <div className='dashContain' >
                 <div className='header' >                    
-                    <h1>WELCOME ADMIN!</h1>
+                    <h1>WELCOME Admin!</h1>
                     <Link to='/' onClick={() => logout} className='logout' >Logout</Link>
                 </div>
                 <div className='userTickets' >
-                    <UserTickets />         
+                    <AdminTickets />         
                 </div>
-                {/* <Link className='newTicket' to='/api/ticket/new'>&#9547;</Link> */}
                 <button onClick={_onButtonClick} className='newTicket'>&#9547;</button>
                     {createTicket ?
                     <NewTicket /> :
@@ -60,4 +59,4 @@ const Dashboard = (props) => {
 
 }; 
 
-export default Dashboard;
+export default AdminDash;

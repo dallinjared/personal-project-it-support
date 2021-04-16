@@ -4,12 +4,13 @@ module.exports = {
     newTicket: async (req, res) => {
         console.log(req.body)
         const db = req.app.get('db');
-        const {id, title, category, description, media} = req.body;
+        const {user_id} = req.session.user;
+        const {title, category, description, media} = req.body;
         const date = new Date();
-
-        if (id) {       
-           await db.ticket.create_ticket([id, date, title, category, description, media])
-                .then(() => res.sendStatus(200))
+        console.log(user_id)
+        if (user_id) {       
+           const createNew = await db.ticket.create_ticket([user_id, date, title, category, description, media])
+                res.status(200).send(createNew)
         } else {
             res.sendStatus(403)
         }

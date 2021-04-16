@@ -26,9 +26,11 @@ class Auth extends Component {
         e.preventDefault();
         axios.post('/auth/login', this.state)
             .then(res => {
-                this.props.history.push('/user/dash')
+                // this.props.history.push('/user/dash')
                 this.props.updateUser({username: res.data.username, id: res.data.user_id, isAdmin: res.data.is_admin})
-                // {this.props.isAdmin ? this.props.history.push('/admin/dash') : this.props.history.push('/user/dash') }
+
+                this.props.user.user.isAdmin ? this.props.history.push('/admin/dash') : this.props.history.push('/user/dash') 
+                console.log(this.props)
             })
             .catch(err => {
                 console.log(err)
@@ -55,6 +57,7 @@ class Auth extends Component {
                         <label>Password</label>
                         <input type='password' value={this.state.password} onChange={e => this.handleChange('password', e.target.value)} />
                     </div>
+                    {this.state.errorMsg && <h3 className='auth-error-msg'>{this.state.errorMsg} <span onClick={this.closeErrorMessage}>X</span></h3>}
                     <div>
                     <button onClick={(e) => this.login(e)}>Login</button>
                     <Link className='register' to='/auth/register'>Register</Link>
@@ -65,4 +68,6 @@ class Auth extends Component {
     }
 }
 
-export default connect(null, {updateUser})(Auth);
+const mapStateToProps = (state) => {return state}
+
+export default connect(mapStateToProps, {updateUser})(Auth);

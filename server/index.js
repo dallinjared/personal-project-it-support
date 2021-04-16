@@ -5,6 +5,7 @@ const massive = require('massive');
 const {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
 const authCtrl = require('./controllers/authController');
 const ticketCtrl = require('./controllers/ticketController');
+const adminCtrl = require('./controllers/adminController');
 const auth = require('./middleware/authMiddleware');
 const app = express();
 
@@ -28,7 +29,7 @@ app.get('/auth/logout', authCtrl.logout)
 // TICKET ENDPOINTS
 app.post('/user/api/ticket/new', ticketCtrl.newTicket)
 app.get('/user/dash', ticketCtrl.getUserTickets)
-app.get('/admin/dash', auth.adminsOnly, ticketCtrl.getUserTickets)
+app.get('/admin/dash', auth.adminsOnly, adminCtrl.getAllOpenTickets)
 app.get('/user/api/ticket/:id', ticketCtrl.readTicket)
 
 massive({

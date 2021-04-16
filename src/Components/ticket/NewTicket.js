@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import {Link, withRouter} from 'react-router-dom';
+import {createTicket} from '../../redux/reducers/ticketReducer';
+import {useHistory} from 'react-router-dom';
 import axios from 'axios';
 
 
 const NewTicket = (props) => {
+    const history = useHistory();
     const [data, setData] = useState({
         id: null,
         date: null,
@@ -24,9 +26,10 @@ const NewTicket = (props) => {
         const data1 = {id: id, date: data.date, title: data.title, category: data.category, description: data.description, media: data.media};
         axios.post('/user/api/ticket/new', data1)
             .then(res => {
-                console.log(res.data)
+
+                props.createTicket({date: res.data.date, title: res.data.title, category: res.data.category, description: res.data.description, media: res.data.media})
+                setView(false)
                 alert('Post successfully submitted')
-                props.history.push('/user/dash')
             })
             .catch(err => console.log(err))
     }
@@ -67,8 +70,7 @@ const NewTicket = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    const {user} = state;
-    return user
+    return state
 }
 
-export default withRouter(connect(mapStateToProps)(NewTicket));
+export default connect(mapStateToProps, {createTicket})(NewTicket);

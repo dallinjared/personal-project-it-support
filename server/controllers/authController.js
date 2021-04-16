@@ -32,7 +32,8 @@ module.exports = {
         const db = req.app.get('db');
         const {username, password, isAdmin} = req.body;
 
-        const [existingUser] = await db.user.get_user([username])
+        const [existingUser] = await db.user.get_user([username, isAdmin])
+        
         if (!existingUser){
             return res.status(401).send('User does not exist')
         }
@@ -41,9 +42,9 @@ module.exports = {
             return res.status(401).send('Incorrect password')
         }
 
+        // req.session.user =  {isAdmin: existingUser.is_admin, id: existingUser.id, username: existingUser.username}
         req.session.user =  existingUser
         delete req.session.user.password
-        console.log(req.session.user)
         res.status(200).send(req.session.user)
     },
 
@@ -54,7 +55,6 @@ module.exports = {
 
     getUser: async (req, res) => {
         if (req.session.user) {
-            console.log(req.session.user)
             res.status(200).send(req.session.user)
         }
         res.status(400).send('ERROR 404: No session found')

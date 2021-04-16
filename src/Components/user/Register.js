@@ -15,17 +15,17 @@ const Register = (props) => {
         birthday: null,
         email: '',
         phone_number: '',
-        is_admin: false
+        is_admin: null
     })
     
 
     function register(e){
         e.preventDefault();
-        const data1 = {username: data.username, password: data.password, first_name: data.first_name, last_name: data.last_name, birthday: data.birthday, email: data.email, phone_number: data.phone_number, is_admin: false}
+        const data1 = {username: data.username, password: data.password, first_name: data.first_name, last_name: data.last_name, birthday: data.birthday, email: data.email, phone_number: data.phone_number, is_admin: data.is_admin}
 
         axios.post('/auth/register', data1)
             .then (res => {
-                this.props.updateUser({username: res.data.username, id: res.data.user_id})
+                props.updateUser({username: res.data.username, id: res.data.user_id})
                 history.push('/user/dash')
             })
             .catch(err => console.log(err))
