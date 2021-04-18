@@ -1,4 +1,4 @@
-@import url(/Users/tjared/Desktop/devmtn/personal-project/personal-project-it-support/src/stylesheets/Auth.css);
+@import url(./Auth.css);
 .registerUser {
   width: 80vw;
   height: 85vh;
@@ -8,7 +8,7 @@
   border-radius: 10px;
   color: white;
   -webkit-box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   font-family: sans-serif;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -20,8 +20,8 @@
   position: relative;
   bottom: 6%;
   -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  -ms-grid-row-align: center;
+  align-self: center;
   width: 60%;
   max-width: 90vw;
   height: 80vh;
